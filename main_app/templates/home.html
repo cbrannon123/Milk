@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="/create/">Add Skill</a>
+<h1>Welcome to My Dev Skills!</h1>
+<table>
+    <thead>
+        <th>Description</th>
+    </thead>
+    <tbody>
+        {% for skill in skills %}
+        <tr>
+            <td>{{skill.description}}</td>
+            <td><form action="{{ skill.id }}/delete/" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Delete!" class="btn">
+                   
+                </form></td>
+        </tr>
+        {% empty %}
+        <tr><td>YOU HAVE NO SKILLS</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
